@@ -35,7 +35,7 @@
             <div class="col-md-4 ">
                 <div class="bg-warning text-white me-3 p-3 rounded">
                     <h5>Withdraw</h5>
-                    <h2>$00</h2>
+                    <h2>$<span id="currentWithdraw">00</span></h2>
                 </div>
             </div>
             <div class="col-md-4">
@@ -100,6 +100,10 @@
             const withdrawNumber=getInputNumber('withdrawAmount')
             // const withdrawAmount=document.getElementById("withdrawAmount").value;
             // const withdrawNumber=parseFloat(withdrawAmount);
+            updateSpanText('currentWithdraw',withdrawNumber);
+            updateSpanText('currentBalance', -1*withdrawNumber)
+
+            document.getElementById('withdrawAmount').value=''
         })
         function getInputNumber(id){
             const amount=document.getElementById(id).value;
@@ -107,10 +111,10 @@
             return amountNumber;
         }
 
-        function updateSpanText(id,depositNumber){
+        function updateSpanText(id,addNumber){
             const current= document.getElementById(id).innerText;
             const currentNumber=parseFloat(current)
-            const totalAmount=depositNumber+currentNumber;
+            const totalAmount=addNumber+currentNumber;
             document.getElementById(id).innerText=totalAmount;
         }
 
